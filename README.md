@@ -1,5 +1,5 @@
 # littleJS
-My own and personal little library for JavaScript.
+My own and very little library for JavaScript.
 
 ## Functions
 - `get` : easy way to select an element.
