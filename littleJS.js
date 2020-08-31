@@ -1,11 +1,4 @@
 // =====================================
-// ============================ SETTINGS 
-// =====================================
-
-// Display erros and informations
-const log = false;
-
-// =====================================
 // ================================ MAIN 
 // =====================================
 
@@ -19,8 +12,6 @@ function get(n) {
     if (n.search("#") != -1 && document.getElementById(n.split("#")[1]) != null) { return document.getElementById(n.split("#")[1]); }
     if (n.search("~") != -1 && document.querySelectorAll(n.split('~')[1]) != null) { return document.querySelectorAll(n.split('~')[1]); }
     if (n.search("\\.") != -1 && document.querySelectorAll(n).length != 0) { return document.querySelectorAll(n); }
-    if (log) { console.log("Error with " + n); }
-    return false;
 }
 
 // =====================================
