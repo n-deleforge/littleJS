@@ -1,6 +1,3 @@
-// =====================================
-// ================================ MAIN 
-// =====================================
 
 // =============================
 // ===== Select an element
@@ -14,9 +11,15 @@ function get(n) {
     if (n.search("\\.") != -1 && document.querySelectorAll(n).length != 0) { return document.querySelectorAll(n); }
 }
 
-// =====================================
-// ================================ MISC 
-// =====================================
+// =============================
+// ===== Usage of local storage
+// n : name, v : value
+
+function storage(a, n, v) {
+    if (a == "get") return localStorage.getItem(n);
+    if (a == "set") return localStorage.setItem(n, v);
+    if (a == "rem") return localStorage.removeItem(n);
+}
 
 // =============================
 // ===> Add a a majuscule
