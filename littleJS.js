@@ -1,6 +1,6 @@
 
 // =============================
-// ===== Select an element
+// ===> Select an element
 // "#"  for an ID
 // "~"  for a selector
 // "."   for a class
@@ -12,7 +12,7 @@ function get(n) {
 }
 
 // =============================
-// ===== Usage of local storage
+// ===> Usage of local storage
 // n : name, v : value
 
 function storage(a, n, v) {
