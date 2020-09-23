@@ -27,3 +27,13 @@ function ucFirst(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
+// =============================
+// ===> Download selectionned content
+// c : content, n : name of the file downloaded
+function download(c, n) {
+    let file = new Blob([c], { type: 'text/plain' });
+    let dl = document.createElement('a');
+    dl.download = n;
+    dl.href = window.URL.createObjectURL(file);
+    dl.click();
+}
