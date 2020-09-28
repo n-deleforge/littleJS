@@ -23,6 +23,8 @@ function storage(a, n, v) {
 
 // =============================
 // ===> Add a a majuscule
+// s : string
+
 function ucFirst(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
@@ -30,10 +32,19 @@ function ucFirst(s) {
 // =============================
 // ===> Download selectionned content
 // c : content, n : name of the file downloaded
+
 function download(c, n) {
     let file = new Blob([c], { type: 'text/plain' });
     let dl = document.createElement('a');
     dl.download = n;
     dl.href = window.URL.createObjectURL(file);
     dl.click();
+}
+
+// =============================
+// ===> Give a random number between min and max
+// min : minimum, max : maximum
+
+function nbRandom(min, max) {
+    return (Math.floor(Math.random() * Math.floor(max))) + min;
 }
