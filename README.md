@@ -1,6 +1,6 @@
 # littleJS
 
-> Version 0.1 :memo:  
+> Version 0.2 :memo:  
 > My own and very little library for JavaScript.
 
 ## Functions
