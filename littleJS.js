@@ -1,8 +1,8 @@
 // =============================
 // ===> Easy selector
 // "#"  for an ID element
-// "."   for several class
-// "~" for special element as header, footer etc.
+// "."  for several class
+// "~"  for special element as header, footer etc.
 
 function get(n) {
     if (n.search("#") == 0 && n.split("#")[1] != null && document.querySelector(n) != null) return document.querySelector(n);
@@ -23,7 +23,6 @@ function storage(a, n, v) {
 
 // =============================
 // ===> Add a a majuscule
-// s : string
 
 function ucFirst(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
