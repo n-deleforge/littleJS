@@ -1,19 +1,19 @@
-
 // =============================
-// ===> Select an element
-// "#"  for an ID
-// "~"  for a selector
-// "."   for a class
+// ===> Easy selector
+// "#"  for an ID element
+// "."   for several class
+// "~" for special element as header, footer etc.
 
 function get(n) {
-    if (n.search("#") != -1 && document.getElementById(n.split("#")[1]) != null) { return document.getElementById(n.split("#")[1]); }
-    if (n.search("~") != -1 && document.querySelectorAll(n.split('~')[1]) != null) { return document.querySelectorAll(n.split('~')[1]); }
-    if (n.search("\\.") != -1 && document.querySelectorAll(n).length != 0) { return document.querySelectorAll(n); }
+    if (n.search("#") == 0 && n.split("#")[1] != null && document.querySelector(n) != null) return document.querySelector(n);
+    if (n.search(".") == 0 && n.split(".")[1] != null && document.querySelectorAll(n) != null) return document.querySelectorAll(n);
+    if (n.search("~") == 0 && n.split("~")[1] != null && document.querySelectorAll(n.split("~")[1]) != null) return document.querySelectorAll(n.split("~")[1])[0];
 }
 
 // =============================
-// ===> Usage of local storage
-// n : name, v : value
+// ===> Simplier usage of the local storage
+// n : name of the content
+// v : value of the content
 
 function storage(a, n, v) {
     if (a == "get") return localStorage.getItem(n);
@@ -30,8 +30,9 @@ function ucFirst(s) {
 }
 
 // =============================
-// ===> Download selectionned content
-// c : content, n : name of the file downloaded
+// ===> Create a download
+// c : content of the file
+// n : name of the file
 
 function download(c, n) {
     let file = new Blob([c], { type: 'text/plain' });
@@ -42,8 +43,9 @@ function download(c, n) {
 }
 
 // =============================
-// ===> Give a random number between min and max
-// min : minimum, max : maximum
+// ===> Give a random number
+// min : minimum
+// max : maximum
 
 function nbRandom(min, max) {
     return (Math.floor(Math.random() * Math.floor(max))) + min;
