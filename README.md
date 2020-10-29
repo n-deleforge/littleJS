@@ -8,3 +8,4 @@
 - `storage` : easy way to use localStorage.
 - `ucFirst` : add a majuscule to a string.
 - `download` : make plain text downloadable.
+- `nbRandom` : return a random number.
