@@ -1,7 +1,7 @@
 // =============================
 // ===> Easy selector
 // "#"  for an ID element
-// "."  for several class
+// "."   for several class
 // "~"  for special element as header, footer etc.
 
 function get(n) {
