@@ -2,7 +2,7 @@
 // ===> Easy selector
 // "#"  for an ID element
 // "."   for several class
-// "~"  for special element as header, footer etc.
+// "~" for special element as header, footer etc.
 
 function get(n) {
     if (n.search("#") == 0 && n.split("#")[1] != null && document.querySelector(n) != null) return document.querySelector(n);
@@ -12,17 +12,44 @@ function get(n) {
 
 // =============================
 // ===> Simplier usage of the local storage
-// n : name of the content
-// v : value of the content
+// name : name of the content
+// value : value of the content
 
-function storage(a, n, v) {
-    if (a == "get") return localStorage.getItem(n);
-    if (a == "set") return localStorage.setItem(n, v);
-    if (a == "rem") return localStorage.removeItem(n);
+function storage(action, name, value) {
+    if (action == "get") return localStorage.getItem(name);
+    if (action == "set") return localStorage.setItem(name, value);
+    if (action == "rem") return localStorage.removeItem(name);
 }
 
 // =============================
-// ===> Add a a majuscule
+// ===> Create a cookie
+// name : name of the cookie
+// value : value of the cookie
+// days : numbers of days
+
+function createCookie(name, value, days) {
+    let date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    let expires = "expires=" + date.toGMTString();
+    document.cookie = name + "=" + value + "; " + expires + "; Path=/ ; SameSite=Strict; Secure";
+}
+
+// =============================
+// ===> Read a cookie
+// name : name of the cookie
+
+function readCookie(name) {
+    let list = document.cookie.split('; ');
+
+    for (let i = 0; i < list.length; i++) {
+        let cookie = list[i].split("=");
+        if (cookie[0] == name) return cookie[1];
+    }
+    return null;
+}
+
+// =============================
+// ===> First-letter majuscule
 
 function ucFirst(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
@@ -30,13 +57,13 @@ function ucFirst(s) {
 
 // =============================
 // ===> Create a download
-// c : content of the file
-// n : name of the file
+// content : content of the file
+// name : name of the file
 
-function download(c, n) {
-    let file = new Blob([c], { type: 'text/plain' });
+function download(content, name) {
+    let file = new Blob([content], { type: 'text/plain' });
     let dl = document.createElement('a');
-    dl.download = n;
+    dl.download = name;
     dl.href = window.URL.createObjectURL(file);
     dl.click();
 }
