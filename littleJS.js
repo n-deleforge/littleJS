@@ -24,7 +24,12 @@ function ucFirst(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
+// =================================================
+// =================================================
+// ============ STORAGE
+
 // ===> Simplier usage of the local storage
+// action : type of action
 // name : name of the content
 // value : value of the content
 function storage(action, name, value) {
@@ -32,10 +37,6 @@ function storage(action, name, value) {
     if (action == "set") return localStorage.setItem(name, value);
     if (action == "rem") return localStorage.removeItem(name);
 }
-
-// =================================================
-// =================================================
-// ============ COOKIES
 
 // ===> Create a cookie
 // name : name of the cookie
