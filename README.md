@@ -1,22 +1,21 @@
 # littleJS
 
-> Version 0.3 :memo:  
+> Version 0.4 :memo:  
 > My own and very little library for JavaScript.
 
-## Main functions
+## Generic
 - `get` : select an element.
   - `#` select an ID
   - `.` select a list of class
   - `~` select a tag like header or footer
+- `rand` : return a random number.
 - `ucFirst` : add a majuscule to a string.
 
-## Local storage, cookies 
+## Storage
 - `storage` : easy way to use localStorage.
 - `createCookie` : create a cookie.
 - `readCookie` :  read the value of a cookie.
+- `deleteCookie` :  read the value of a cookie.
 
-## Maths
-- `nbRandom` : return a random number.
-
-## Misc
+## Others
 - `download` : make plain text downloadable.
