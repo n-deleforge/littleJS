@@ -1,6 +1,6 @@
 # littleJS
 
-> Version 0.4 :memo:  
+> Version 0.2 :memo:  
 > My own and very little library for JavaScript.
 
 ## Generic
@@ -14,9 +14,24 @@
 
 ## Storage
 - `storage` : easy way to use localStorage.
-- `createCookie` : create a cookie.
-- `readCookie` :  read the value of a cookie.
-- `deleteCookie` :  read the value of a cookie.
+- `cookie` : create, modify, read or delete a cookie.
 
 ## Others
 - `download` : make plain text downloadable.
+
+# Notes
+The `cookie` function works pretty well. However, if you use your cookies with true or false value, you'll need to be aware cos the result will be "true" and "false".
+
+ ```JS
+ // Incorrect
+ if (cookie("read", "myCookie")) {
+  do this and that
+ }
+ 
+ // Correct
+ if (cookie("read", "myCookie") == "true") {
+  do this and that
+ }
+ ```
+ 
+ If anybody know how to fix this problem, I'll do the changes.
