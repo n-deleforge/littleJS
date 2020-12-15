@@ -7,9 +7,12 @@
 // "."   for several class
 // "~" for special element as header, footer etc.
 function get(n) {
-    if (n.search("#") == 0 && n.split("#")[1] != null && document.querySelector(n) != null) return document.querySelector(n);
-    if (n.search(".") == 0 && n.split(".")[1] != null && document.querySelectorAll(n) != null) return document.querySelectorAll(n);
-    if (n.search("~") == 0 && n.split("~")[1] != null && document.querySelectorAll(n.split("~")[1]) != null) return document.querySelectorAll(n.split("~")[1])[0];
+    if (n.search("#") == 0 && n.split("#")[1] != null && document.querySelector(n) != null) 
+        return document.querySelector(n);
+    if (n.search(".") == 0 && n.split(".")[1] != null && document.querySelectorAll(n) != null) 
+        return document.querySelectorAll(n);
+    if (n.search("~") == 0 && n.split("~")[1] != null && document.querySelectorAll(n.split("~")[1]) != null)
+        return document.querySelectorAll(n.split("~")[1])[0];
 }
 
 // ===> Give a random number
@@ -24,6 +27,16 @@ function ucFirst(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
+// ===> Display singular or plural
+// nb : quantity  
+// singular : the word when it's singular
+// plural : the word when it's plural
+function plural(nb, singular, plural) {
+    if (nb > 1) 
+        return plural;
+    return singular;
+} 
+
 // =================================================
 // =================================================
 // ============ STORAGE
@@ -33,9 +46,12 @@ function ucFirst(s) {
 // name : name of the content
 // value : value of the content
 function storage(action, name, value) {
-    if (action == "get") return localStorage.getItem(name);
-    if (action == "set") return localStorage.setItem(name, value);
-    if (action == "rem") return localStorage.removeItem(name);
+    if (action == "get") 
+        return localStorage.getItem(name);
+    if (action == "set") 
+        return localStorage.setItem(name, value);
+    if (action == "rem") 
+        return localStorage.removeItem(name);
 }
 
 // ===> Create a cookie
@@ -56,8 +72,10 @@ function readCookie(name) {
 
     for (let i = 0; i < list.length; i++) {
         let cookie = list[i].split("=");
-        if (cookie[0] == name) return cookie[1];
+        if (cookie[0] == name) 
+            return cookie[1];
     }
+
     return null;
 }
 
@@ -77,6 +95,7 @@ function deleteCookie(name) {
 function download(content, name) {
     let file = new Blob([content], { type: 'text/plain' });
     let dl = document.createElement('a');
+
     dl.download = name;
     dl.href = window.URL.createObjectURL(file);
     dl.click();
