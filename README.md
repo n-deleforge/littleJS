@@ -25,12 +25,12 @@ The `cookie` function works pretty well. However, if you use your cookies with t
  ```JS
  // Incorrect
  if (cookie("read", "myCookie")) {
-  do this and that
+  // do this and that
  }
  
  // Correct
  if (cookie("read", "myCookie") == "true") {
-  do this and that
+  // do this and that
  }
  ```
  
