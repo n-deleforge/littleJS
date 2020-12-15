@@ -10,6 +10,7 @@
   - `~` select a tag like header or footer
 - `rand` : return a random number.
 - `ucFirst` : add a majuscule to a string.
+- `plural` : according to a number, display singular or plural
 
 ## Storage
 - `storage` : easy way to use localStorage.
