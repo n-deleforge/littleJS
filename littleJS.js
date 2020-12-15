@@ -1,3 +1,7 @@
+// => Version : 0.2
+// => Last update : 15/12/2020
+// => Creator : Nicolas Deleforge
+
 // =================================================
 // =================================================
 // ============ GENERIC
@@ -6,6 +10,7 @@
 // "#"  for an ID element
 // "."   for several class
 // "~" for special element as header, footer etc.
+
 function get(n) {
     if (n.search("#") == 0 && n.split("#")[1] != null && document.querySelector(n) != null) 
         return document.querySelector(n);
@@ -18,11 +23,13 @@ function get(n) {
 // ===> Give a random number
 // min : minimum
 // max : maximum
+
 function rand(min, max) {
     return (Math.floor(Math.random() * Math.floor(max))) + min;
 }
 
 // ===> First-letter majuscule
+
 function ucFirst(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
@@ -31,6 +38,7 @@ function ucFirst(s) {
 // nb : quantity  
 // singular : the word when it's singular
 // plural : the word when it's plural
+
 function plural(nb, singular, plural) {
     if (nb > 1) 
         return plural;
@@ -42,9 +50,10 @@ function plural(nb, singular, plural) {
 // ============ STORAGE
 
 // ===> Simplier usage of the local storage
-// action : type of action
-// name : name of the content
-// value : value of the content
+// action : get, set or rem
+// name :  name of the value
+// value : content of the value
+
 function storage(action, name, value) {
     if (action == "get") 
         return localStorage.getItem(name);
@@ -54,35 +63,35 @@ function storage(action, name, value) {
         return localStorage.removeItem(name);
 }
 
-// ===> Create a cookie
-// name : name of the cookie
-// value : value of the cookie
-// days : numbers of days
-function createCookie(name, value, days) {
-    let date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    let expires = "expires=" + date.toGMTString();
-    document.cookie = name + "=" + value + "; " + expires + "; Path=/ ; SameSite=Strict; Secure";
-}
+// ===> Another way to use cookies
+// action : create, read or delete
+// name : name of the value
+// value : content of the value
+// days : numbers of days till it expires
 
-// ===> Read a cookie
-// name : name of the cookie
-function readCookie(name) {
-    let list = document.cookie.split('; ');
-
-    for (let i = 0; i < list.length; i++) {
-        let cookie = list[i].split("=");
-        if (cookie[0] == name) 
-            return cookie[1];
+function cookie(action, name, value, days) {
+    if (action == "create") {
+        let date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + date.toGMTString();
+        document.cookie = name + "=" + value + "; " + expires + "; Path=/ ; SameSite=Strict; Secure";
     }
 
-    return null;
-}
+    if (action == "read") {
+        let list = document.cookie.split('; ');
 
-// ===> Delete a cookie
-// name : name of the cookie
-function deleteCookie(name) {
-    createCookie(name, "", -1);
+        for (let i = 0; i < list.length; i++) {
+            let cookie = list[i].split("=");
+            if (cookie[0] == name) 
+                return cookie[1];
+        }
+    
+        return null;
+    }
+
+    if (action == "delete") {
+        cookie("create", name, "", -1);
+    }
 }
 
 // =================================================
@@ -92,6 +101,7 @@ function deleteCookie(name) {
 // ===> Create a download
 // content : content of the file
 // name : name of the file
+
 function download(content, name) {
     let file = new Blob([content], { type: 'text/plain' });
     let dl = document.createElement('a');
