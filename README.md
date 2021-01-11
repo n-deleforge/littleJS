@@ -16,6 +16,9 @@
 - `storage` : easy way to use localStorage.
 - `cookie` : create, modify, read or delete a cookie.
 
+## CSS to JS
+- `getVariableCSS` : get the value of a CSS variable.
+
 ## Others
 - `download` : make plain text downloadable.
 
