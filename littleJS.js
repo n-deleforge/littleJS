@@ -1,6 +1,5 @@
 // => Version : 0.2
-// => Last update : 15/12/2020
-// => Creator : Nicolas Deleforge
+// => Last update : 11/01/2021
 
 // =================================================
 // =================================================
@@ -92,6 +91,16 @@ function cookie(action, name, value, days) {
     if (action == "delete") {
         cookie("create", name, "", -1);
     }
+}
+
+// =================================================
+// =================================================
+// ============ CSS TO JS
+
+// ===> Get the value of a CSS variable
+
+function getVariableCSS(name) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name)
 }
 
 // =================================================
