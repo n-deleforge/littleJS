@@ -38,3 +38,8 @@ The `cookie` function works pretty well. However, if you use your cookies with t
  ```
  
  If anybody know how to fix this problem, I'll do the changes.
+ 
+ # Changelog
+ 
+ - 0.2 : new functions as `cookie` and `getVariableCSS` 
+ - 0.1 : Initial release
