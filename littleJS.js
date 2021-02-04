@@ -39,9 +39,8 @@ function ucFirst(s) {
 // plural : the word when it's plural
 
 function plural(nb, singular, plural) {
-    if (nb > 1) 
-        return plural;
-    return singular;
+    let result = nb > 1 ? plural : singular; 
+    return result;
 } 
 
 // =================================================
