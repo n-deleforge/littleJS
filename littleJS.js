@@ -18,21 +18,21 @@ function get(name) {
     let error = subTitle + "the `"+ name + "` element doesn't exist.";
 
     // ID element
-    if (n.search("#") == 0 && name.split("#")[1] != null) {
+    if (name.search("#") == 0 && name.split("#")[1] != null) {
         if (document.querySelector(name) != null) 
             return document.querySelector(name);
         else throw (error);
     }
     
     // Class element
-    if (n.search(".") == 0 && name.split(".")[1] != null) {
+    if (name.search(".") == 0 && name.split(".")[1] != null) {
         if (document.querySelectorAll(name).length != 0)
             return document.querySelectorAll(name);
         else throw (error);
     }
 
     // Tag element
-    if (n.search("~") == 0 && name.split("~")[1] != null) {
+    if (name.search("~") == 0 && name.split("~")[1] != null) {
         if (document.querySelectorAll(name.split("~")[1])[0] != null)
             return document.querySelectorAll(name.split("~")[1])[0];
         else throw (error);
