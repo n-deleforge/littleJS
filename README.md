@@ -1,6 +1,6 @@
 # littleJS
 
-> Version 0.2 :memo:  
+> Version 0.3 :memo:  
 > My own and very little library for JavaScript.
 
 ## Generic
@@ -13,14 +13,14 @@
 - `plural` : according to a number, display singular or plural
 
 ## Storage
-- `storage` : easy way to use localStorage.
-- `cookie` : create, modify, read or delete a cookie.
+- `storage` : get, set or remove local storage
+- `cookie` : read, create/modify or delete a cookie.
 
 ## CSS to JS
 - `getVariableCSS` : get the value of a CSS variable.
 
-## Others
-- `download` : make plain text downloadable.
+## Uncategorized
+- `download` : make blob downloadable.
 
 # Notes
 The `cookie` function works pretty well. However, if you use your cookies with true or false value, you'll need to be aware cos the result will be "true" and "false".
@@ -41,5 +41,6 @@ The `cookie` function works pretty well. However, if you use your cookies with t
  
  # Changelog
  
+ - 0.3 : documentation added for each functions, a lot more debug info
  - 0.2 : new functions as `cookie` and `getVariableCSS` 
  - 0.1 : Initial release

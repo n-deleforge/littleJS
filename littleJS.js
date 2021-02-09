@@ -1,120 +1,221 @@
-// => Version : 0.2
-// => Last update : 11/01/2021
+// => Version : 0.3
+// => Last update : 09/02/2021
+
+const _LIBRARY_TITLE = "Little JS";
 
 // =================================================
 // =================================================
 // ============ GENERIC
 
-// ===> Easy selector
-// "#"  for an ID element
-// "."   for several class
-// "~" for special element as header, footer etc.
+/**
+ *  Easy, pratical and quick element selector
+ * @param {string} name  key character ("#"  for an ID element, "."   for a list of class or "~" for tag) + name of the element to select
+ * @return HTMLelement (querySelector)
+ **/
 
-function get(n) {
-    if (n.search("#") == 0 && n.split("#")[1] != null && document.querySelector(n) != null) 
-        return document.querySelector(n);
-    if (n.search(".") == 0 && n.split(".")[1] != null && document.querySelectorAll(n) != null) 
-        return document.querySelectorAll(n);
-    if (n.search("~") == 0 && n.split("~")[1] != null && document.querySelectorAll(n.split("~")[1]) != null)
-        return document.querySelectorAll(n.split("~")[1])[0];
+function get(name) {
+    let subTitle =  _LIBRARY_TITLE + " (" + get.name + ") : ";
+    let error = subTitle + "the `"+ name + "` element doesn't exist.";
+
+    // ID element
+    if (n.search("#") == 0 && name.split("#")[1] != null) {
+        if (document.querySelector(name) != null) 
+            return document.querySelector(name);
+        else throw (error);
+    }
+    
+    // Class element
+    if (n.search(".") == 0 && name.split(".")[1] != null) {
+        if (document.querySelectorAll(name).length != 0)
+            return document.querySelectorAll(name);
+        else throw (error);
+    }
+
+    // Tag element
+    if (n.search("~") == 0 && name.split("~")[1] != null) {
+        if (document.querySelectorAll(name.split("~")[1])[0] != null)
+            return document.querySelectorAll(name.split("~")[1])[0];
+        else throw (error);
+    }
+
+    throw (subTitle + "must be used with a keycode as `#`, `.` or `~`.");
 }
 
-// ===> Give a random number
-// min : minimum
-// max : maximum
+/**
+ *  Return a random number between x and y
+ * @param {int} min     the lowest number
+ * @param {int} max    the biggest number
+ * @return random value
+ **/
 
 function rand(min, max) {
-    return (Math.floor(Math.random() * Math.floor(max))) + min;
+    let subTitle =  _LIBRARY_TITLE + " (" + rand.name + ") : ";
+
+    if (typeof min == 'number' && typeof max == 'number')
+        if (min < max)
+            return (Math.floor(Math.random() * (max - min) + min));
+        else throw (subTitle + "MIN must be smaller than MAX");
+    else throw (subTitle + "must be used with two numbers.");
 }
 
-// ===> First-letter majuscule
+/**
+ *  Return capitalized string
+ * @param {string} s string to be capitalized
+ * @return capitalized string
+ **/
 
 function ucFirst(s) {
-    return s.charAt(0).toUpperCase() + s.slice(1);
+    let subTitle =  _LIBRARY_TITLE + " (" + ucFirst.name + ") : ";
+
+    if (typeof s == "string")
+        return s.charAt(0).toUpperCase() + s.slice(1);
+    else throw(subTitle + "needs a string as argument.");
 }
 
-// ===> Display singular or plural
-// nb : quantity  
-// singular : the word when it's singular
-// plural : the word when it's plural
+/**
+ *  Return singular or plural according the quantity given
+ * @param {int} nb the quantity
+ * @param {string} str1 the singular
+ * @param {string} str2 the plural
+ * @return singular or plural
+ **/
 
-function plural(nb, singular, plural) {
-    let result = nb > 1 ? plural : singular; 
-    return result;
-} 
+function plural(nb, str1, str2) {
+    let subTitle =  _LIBRARY_TITLE + " (" + plural.name + ") : ";
+
+    if (typeof nb == "number" && typeof str1 == "string" && typeof str2 == "string")
+        if (nb > 0)
+            return nb < 2 ? str1 : str2; 
+        else throw(subTitle + "the quantity can't be negative or equal to 0.")
+    else throw(subTitle + "needs three arguments : the first argument must be a number and the next two arguments must be a string.");
+}
 
 // =================================================
 // =================================================
 // ============ STORAGE
 
-// ===> Simplier usage of the local storage
-// action : get, set or rem
-// name :  name of the value
-// value : content of the value
+/**
+ *  Get, set or remove a local storage
+ * @param {string} action "get" to get a local storage, "set" to create/modify a local storage or "remove" to delete a local storage
+ * @param {string} name name of the local storage
+ * @param {string} value value of the local storage (only for the "set" action)
+ * @return void
+ **/
 
-function storage(action, name, value) {
-    if (action == "get") 
-        return localStorage.getItem(name);
-    if (action == "set") 
+function storage(action, name, value = null) {
+    let subTitle = _LIBRARY_TITLE + " (" + storage.name + ") : ";
+    let error = subTitle + "the local storage named `" + name + "` doesn't exist";
+
+    // getItem
+    if (action == "get" && name) {
+        if(localStorage.getItem(name))
+            return localStorage.getItem(name);
+        else throw (error);
+    }
+
+    // setItem
+    if (action == "set"&& name && value != null)  
         return localStorage.setItem(name, value);
-    if (action == "rem") 
-        return localStorage.removeItem(name);
+
+    // removeItem
+    if (action == "rem" && name) {
+        if(localStorage.getItem(name))
+            return localStorage.removeItem(name);
+        else throw (error);
+    }
+
+    throw (subTitle + "needs at least two arguments, or three with the set action.");
 }
 
-// ===> Another way to use cookies
-// action : create, read or delete
-// name : name of the value
-// value : content of the value
-// days : numbers of days till it expires
+/**
+ *  Read, create or delete a cookie
+ * @param {string} action "read" for reading a cookie, "create" to create/modify a cookie or "delete" to delete a cookie
+ * @param {string} name name of the cookie
+ * @param {string} value value of the cookie (only for the "create" action)
+ * @param {string} days number of days of the cookie (only for the "create" action, by default : one year)
+ * @return void
+ **/
 
-function cookie(action, name, value, days) {
-    if (action == "create") {
-        let date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        let expires = "expires=" + date.toGMTString();
-        document.cookie = name + "=" + value + "; " + expires + "; Path=/ ; SameSite=Strict; Secure";
-    }
+function cookie(action, name, value = null, days = 365) {
+    let subTitle =  _LIBRARY_TITLE + " (" + cookie.name + ") : ";
+    let error = subTitle + "the cookie named `" + name + "` doesn't exist";
 
+    // Read a cookie
     if (action == "read") {
-        let list = document.cookie.split('; ');
-
-        for (let i = 0; i < list.length; i++) {
-            let cookie = list[i].split("=");
-            if (cookie[0] == name) 
-                return cookie[1];
+        if (typeof name == "string") {
+            let cookiesList = document.cookie.split('; ');
+            for (let i = 0; i < cookiesList.length; i++)
+                if (cookiesList[i].split("=")[0] == name) 
+                    return cookiesList[i].split("=")[1];
+            throw(error); 
         }
-    
-        return null;
+        else throw(subTitle + "the read action needs a string as argument.")
     }
 
-    if (action == "delete") {
-        cookie("create", name, "", -1);
+    // Create a cookie
+    if (action == "create") {
+        if (typeof name == "string" && value) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            let expires = "Expires=" + date.toGMTString();
+            return document.cookie = name + "=" + value + "; " + expires + "; Path=/; SameSite=Strict; Secure";
+        }
+        else throw(subTitle + "the create action needs at lest two arguments (name, value).");
     }
+
+    // Delete a cookie
+    if (action == "delete") {
+        if (typeof name == "string")
+            if (cookie("read", name))
+                return document.cookie = name + "=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; Path=/; SameSite=Strict; Secure";
+            else throw(error);
+        else throw(subTitle + "the delete action needs a string as argument.")
+    }
+
+    throw (subTitle + "needs at least two arguments, or four with the create action.");
 }
 
 // =================================================
 // =================================================
 // ============ CSS TO JS
 
-// ===> Get the value of a CSS variable
+/**
+ *  Return the value of the CSS variable given
+ * @param {string} name the name of the CSS variable
+ * @return the value of the CSS variable
+ **/
 
 function getVariableCSS(name) {
-    return getComputedStyle(document.documentElement).getPropertyValue(name)
+    let subTitle =  _LIBRARY_TITLE + " (" + getVariableCSS.name + ") : ";
+
+    if (typeof name == "string")
+        if (getComputedStyle(document.documentElement).getPropertyValue("--" + name) != "")
+            return getComputedStyle(document.documentElement).getPropertyValue("--" + name);
+        else throw(subTitle + "the " + name + " CSS variable does't exist"); 
+    else throw(subTitle + "needs a string as argument."); 
 }
 
 // =================================================
 // =================================================
-// ============ OTHERS
+// ============ UNCATEGORIZED
 
-// ===> Create a download
-// content : content of the file
-// name : name of the file
+/**
+ *  Create a blob and make it downloadable
+ * @param {string} content the content of the file
+ * @param {string} name the name of the file
+ * @return void
+ **/
 
 function download(content, name) {
-    let file = new Blob([content], { type: 'text/plain' });
-    let dl = document.createElement('a');
+    let subTitle =  _LIBRARY_TITLE + " (" + download.name + ") : ";
 
-    dl.download = name;
-    dl.href = window.URL.createObjectURL(file);
-    dl.click();
+    if (typeof content == "string" && typeof name == "string") {
+        let file = new Blob([content], { type: 'text/plain' });
+        let dl = document.createElement('a');
+    
+        dl.download = name;
+        dl.href = window.URL.createObjectURL(file);
+        dl.click();
+    }
+    else throw (subTitle + "needs at two strings as arguments.")
 }
