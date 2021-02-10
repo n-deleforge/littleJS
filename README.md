@@ -22,6 +22,11 @@
 ## Uncategorized
 - `download` : make blob downloadable.
 
+# Debug mode
+To activate the *debug mode*, call the script followed by `?debug`.  
+> `<script src="little.min.js"></script>` debug mode not activated
+> `<script src="little.min.js?debug"></script>` debug mode activated
+
 # Notes
 The `cookie` function works pretty well. However, if you use your cookies with true or false value, you'll need to be aware cos the result will be "true" and "false".
 

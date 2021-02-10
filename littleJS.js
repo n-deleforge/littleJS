@@ -2,6 +2,7 @@
 // => Last update : 09/02/2021
 
 const _LIBRARY_TITLE = "Little JS";
+const _DEBUG_MODE = document.currentScript.src.split("?")[1] == "debug" ? true : false;
 
 // =================================================
 // =================================================
@@ -21,24 +22,27 @@ function get(name) {
     if (name.search("#") == 0 && name.split("#")[1] != null) {
         if (document.querySelector(name) != null) 
             return document.querySelector(name);
-        else throw (error);
+        else 
+            if (_DEBUG_MODE) throw (error);
     }
     
     // Class element
     if (name.search(".") == 0 && name.split(".")[1] != null) {
         if (document.querySelectorAll(name).length != 0)
             return document.querySelectorAll(name);
-        else throw (error);
+        else 
+            if (_DEBUG_MODE) throw (error);
     }
 
     // Tag element
     if (name.search("~") == 0 && name.split("~")[1] != null) {
         if (document.querySelectorAll(name.split("~")[1])[0] != null)
             return document.querySelectorAll(name.split("~")[1])[0];
-        else throw (error);
+        else 
+            if (_DEBUG_MODE) throw (error);
     }
 
-    throw (subTitle + "must be used with a keycode as `#`, `.` or `~`.");
+    if (_DEBUG_MODE) throw (subTitle + "must be used with a keycode as `#`, `.` or `~`.");
 }
 
 /**
@@ -51,11 +55,14 @@ function get(name) {
 function rand(min, max) {
     let subTitle =  _LIBRARY_TITLE + " (" + rand.name + ") : ";
 
-    if (typeof min == 'number' && typeof max == 'number')
+    if (typeof min == 'number' && typeof max == 'number') {
         if (min < max)
             return (Math.floor(Math.random() * (max - min) + min));
-        else throw (subTitle + "MIN must be smaller than MAX");
-    else throw (subTitle + "must be used with two numbers.");
+        else
+            if (_DEBUG_MODE) throw (subTitle + "MIN must be smaller than MAX");
+    }
+    else
+        if (_DEBUG_MODE) throw (subTitle + "must be used with two numbers.");
 }
 
 /**
@@ -67,9 +74,10 @@ function rand(min, max) {
 function ucFirst(s) {
     let subTitle =  _LIBRARY_TITLE + " (" + ucFirst.name + ") : ";
 
-    if (typeof s == "string")
+    if (typeof s == "string" && s != "")
         return s.charAt(0).toUpperCase() + s.slice(1);
-    else throw(subTitle + "needs a string as argument.");
+    else
+        if (_DEBUG_MODE) throw(subTitle + "needs a valide string as argument.");
 }
 
 /**
@@ -83,11 +91,14 @@ function ucFirst(s) {
 function plural(nb, str1, str2) {
     let subTitle =  _LIBRARY_TITLE + " (" + plural.name + ") : ";
 
-    if (typeof nb == "number" && typeof str1 == "string" && typeof str2 == "string")
+    if (typeof nb == "number" && typeof str1 == "string" && typeof str2 == "string") {
         if (nb > 0)
             return nb < 2 ? str1 : str2; 
-        else throw(subTitle + "the quantity can't be negative or equal to 0.")
-    else throw(subTitle + "needs three arguments : the first argument must be a number and the next two arguments must be a string.");
+        else
+            if (_DEBUG_MODE) throw(subTitle + "the quantity can't be negative or equal to 0.")
+    }
+    else 
+        if (_DEBUG_MODE) throw(subTitle + "needs three arguments : the first argument must be a number and the next two arguments must be a string.");
 }
 
 // =================================================
@@ -110,7 +121,8 @@ function storage(action, name, value = null) {
     if (action == "get" && name) {
         if(localStorage.getItem(name))
             return localStorage.getItem(name);
-        else throw (error);
+        else
+            if (_DEBUG_MODE) throw (error);
     }
 
     // setItem
@@ -121,10 +133,11 @@ function storage(action, name, value = null) {
     if (action == "rem" && name) {
         if(localStorage.getItem(name))
             return localStorage.removeItem(name);
-        else throw (error);
+        else
+            if (_DEBUG_MODE) throw (error);
     }
 
-    throw (subTitle + "needs at least two arguments, or three with the set action.");
+    if (_DEBUG_MODE) throw (subTitle + "needs at least two arguments, or three with the set action.");
 }
 
 /**
@@ -144,12 +157,14 @@ function cookie(action, name, value = null, days = 365) {
     if (action == "read") {
         if (typeof name == "string") {
             let cookiesList = document.cookie.split('; ');
-            for (let i = 0; i < cookiesList.length; i++)
+            for (let i = 0; i < cookiesList.length; i++) {
                 if (cookiesList[i].split("=")[0] == name) 
                     return cookiesList[i].split("=")[1];
-            throw(error); 
+            }
+            if (_DEBUG_MODE) throw(error); 
         }
-        else throw(subTitle + "the read action needs a string as argument.")
+        else
+            if (_DEBUG_MODE) throw(subTitle + "the read action needs a string as argument.")
     }
 
     // Create a cookie
@@ -160,19 +175,23 @@ function cookie(action, name, value = null, days = 365) {
             let expires = "Expires=" + date.toGMTString();
             return document.cookie = name + "=" + value + "; " + expires + "; Path=/; SameSite=Strict; Secure";
         }
-        else throw(subTitle + "the create action needs at lest two arguments (name, value).");
+        else 
+            if (_DEBUG_MODE) throw(subTitle + "the create action needs at lest two arguments (name, value).");
     }
 
     // Delete a cookie
     if (action == "delete") {
-        if (typeof name == "string")
+        if (typeof name == "string") {
             if (cookie("read", name))
                 return document.cookie = name + "=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; Path=/; SameSite=Strict; Secure";
-            else throw(error);
-        else throw(subTitle + "the delete action needs a string as argument.")
+            else 
+                if (_DEBUG_MODE) throw(error);
+        }
+        else 
+            if (_DEBUG_MODE) throw(subTitle + "the delete action needs a string as argument.")
     }
 
-    throw (subTitle + "needs at least two arguments, or four with the create action.");
+    if (_DEBUG_MODE) throw (subTitle + "needs at least two arguments, or four with the create action.");
 }
 
 // =================================================
@@ -188,11 +207,14 @@ function cookie(action, name, value = null, days = 365) {
 function getVariableCSS(name) {
     let subTitle =  _LIBRARY_TITLE + " (" + getVariableCSS.name + ") : ";
 
-    if (typeof name == "string")
+    if (typeof name == "string") {
         if (getComputedStyle(document.documentElement).getPropertyValue("--" + name) != "")
             return getComputedStyle(document.documentElement).getPropertyValue("--" + name);
-        else throw(subTitle + "the " + name + " CSS variable does't exist"); 
-    else throw(subTitle + "needs a string as argument."); 
+        else 
+            if (_DEBUG_MODE) throw(subTitle + "the " + name + " CSS variable does't exist"); 
+    }
+    else 
+        if (_DEBUG_MODE)throw(subTitle + "needs a string as argument."); 
 }
 
 // =================================================
@@ -217,5 +239,6 @@ function download(content, name) {
         dl.href = window.URL.createObjectURL(file);
         dl.click();
     }
-    else throw (subTitle + "needs at two strings as arguments.")
+    else 
+        if (_DEBUG_MODE) throw (subTitle + "needs at two strings as arguments.")
 }
