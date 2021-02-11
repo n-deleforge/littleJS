@@ -92,7 +92,7 @@ function plural(nb, str1, str2) {
     let subTitle =  _LIBRARY_TITLE + " (" + plural.name + ") : ";
 
     if (typeof nb == "number" && typeof str1 == "string" && typeof str2 == "string") {
-        if (nb > 0)
+        if (nb > -1)
             return nb < 2 ? str1 : str2; 
         else
             if (_DEBUG_MODE) throw(subTitle + "the quantity can't be negative or equal to 0.")
