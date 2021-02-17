@@ -1,8 +1,10 @@
 // => Version : 0.3
-// => Last update : 09/02/2021
+// => Last update : 17/02/2021
 
 const _LIBRARY_TITLE = "Little JS";
 const _DEBUG_MODE = document.currentScript.src.split("?")[1] == "debug" ? true : false;
+
+if (_DEBUG_MODE) console.log (_LIBRARY_TITLE + " : debug mode activated");
 
 // =================================================
 // =================================================
