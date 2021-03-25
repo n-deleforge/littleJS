@@ -1,6 +1,6 @@
 # littleJS
 
-> Version 0.3 :memo:  
+> Version 0.3.1 :memo:  
 > My own and very little library for JavaScript.
 
 ## Generic
@@ -14,44 +14,17 @@
 
 ## Storage
 - `storage` : get, set or remove local storage
-- `cookie` : read, create/modify or delete a cookie.
+- `cookie` : get,  set or remove a cookie.
 
 ## CSS to JS
 - `getVariableCSS` : get the value of a CSS variable.
 
 ## Uncategorized
 - `download` : make blob downloadable.
-
-# Debug mode
-To activate the *debug mode*, call the script followed by `?debug`  
-
-```HTML
-<!-- debug mode not activated -->
-<script src="little.min.js"></script>
-
-<!-- debug mode activated -->
-<script src="little.min.js?debug"></script>
-```
-
-# Notes
-The `cookie` function works pretty well. However, if you use your cookies with true or false value, you'll need to be aware cos the result will be "true" and "false".
-
- ```JS
- // Incorrect
- if (cookie("read", "myCookie")) {
-  // do this and that
- }
- 
- // Correct
- if (cookie("read", "myCookie") == "true") {
-  // do this and that
- }
- ```
- 
- If anybody know how to fix this problem, I'll do the changes.
  
  # Changelog
  
+ - 0.3.1 : actually, I decided to remove all the debug part cos I want to keep it light. The problem of the cookie function has been corrected thank to this [kind guy](https://github.com/NamedRoger). I didn't choose his method but it seems to work well too.
  - 0.3 : documentation added for each functions, a lot more debug info
  - 0.2 : new functions as `cookie` and `getVariableCSS` 
  - 0.1 : Initial release

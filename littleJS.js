@@ -1,10 +1,5 @@
-// => Version : 0.3
-// => Last update : 17/02/2021
-
-const _LIBRARY_TITLE = "Little JS";
-const _DEBUG_MODE = document.currentScript.src.split("?")[1] == "debug" ? true : false;
-
-if (_DEBUG_MODE) console.log (_LIBRARY_TITLE + " : debug mode activated");
+// => Version : 0.3.1
+// => Last update : 25/03/2021
 
 // =================================================
 // =================================================
@@ -12,39 +7,22 @@ if (_DEBUG_MODE) console.log (_LIBRARY_TITLE + " : debug mode activated");
 
 /**
  *  Easy, pratical and quick element selector
- * @param {string} name  key character ("#"  for an ID element, "."   for a list of class or "~" for tag) + name of the element to select
+ * @param {string} element  key character ("#"  for an ID element, "."   for a list of class or "~" for tag) + name of the element to select
  * @return HTMLelement (querySelector)
  **/
 
-function get(name) {
-    let subTitle =  _LIBRARY_TITLE + " (" + get.name + ") : ";
-    let error = subTitle + "the `"+ name + "` element doesn't exist.";
-
+function get(element) {
     // ID element
-    if (name.search("#") == 0 && name.split("#")[1] != null) {
-        if (document.querySelector(name) != null) 
-            return document.querySelector(name);
-        else 
-            if (_DEBUG_MODE) throw (error);
-    }
+    if (element.search("#") == 0 && element.split("#")[1] != null)
+        if (document.querySelector(element) != null) return document.querySelector(element);
     
     // Class element
-    if (name.search(".") == 0 && name.split(".")[1] != null) {
-        if (document.querySelectorAll(name).length != 0)
-            return document.querySelectorAll(name);
-        else 
-            if (_DEBUG_MODE) throw (error);
-    }
+    if (element.search(".") == 0 && element.split(".")[1] != null)
+        if (document.querySelectorAll(element).length != 0) return document.querySelectorAll(element);
 
     // Tag element
-    if (name.search("~") == 0 && name.split("~")[1] != null) {
-        if (document.querySelectorAll(name.split("~")[1])[0] != null)
-            return document.querySelectorAll(name.split("~")[1])[0];
-        else 
-            if (_DEBUG_MODE) throw (error);
-    }
-
-    if (_DEBUG_MODE) throw (subTitle + "must be used with a keycode as `#`, `.` or `~`.");
+    if (element.search("~") == 0 && element.split("~")[1] != null)
+        if (document.querySelectorAll(element.split("~")[1])[0] != null) return document.querySelectorAll(element.split("~")[1])[0];
 }
 
 /**
@@ -55,16 +33,7 @@ function get(name) {
  **/
 
 function rand(min, max) {
-    let subTitle =  _LIBRARY_TITLE + " (" + rand.name + ") : ";
-
-    if (typeof min == 'number' && typeof max == 'number') {
-        if (min < max)
-            return (Math.floor(Math.random() * (max - min) + min));
-        else
-            if (_DEBUG_MODE) throw (subTitle + "MIN must be smaller than MAX");
-    }
-    else
-        if (_DEBUG_MODE) throw (subTitle + "must be used with two numbers.");
+    if (min < max) return (Math.floor(Math.random() * (max - min) + min));
 }
 
 /**
@@ -74,12 +43,7 @@ function rand(min, max) {
  **/
 
 function ucFirst(s) {
-    let subTitle =  _LIBRARY_TITLE + " (" + ucFirst.name + ") : ";
-
-    if (typeof s == "string" && s != "")
         return s.charAt(0).toUpperCase() + s.slice(1);
-    else
-        if (_DEBUG_MODE) throw(subTitle + "needs a valide string as argument.");
 }
 
 /**
@@ -91,16 +55,7 @@ function ucFirst(s) {
  **/
 
 function plural(nb, str1, str2) {
-    let subTitle =  _LIBRARY_TITLE + " (" + plural.name + ") : ";
-
-    if (typeof nb == "number" && typeof str1 == "string" && typeof str2 == "string") {
-        if (nb > -1)
-            return nb < 2 ? str1 : str2; 
-        else
-            if (_DEBUG_MODE) throw(subTitle + "the quantity can't be negative or equal to 0.")
-    }
-    else 
-        if (_DEBUG_MODE) throw(subTitle + "needs three arguments : the first argument must be a number and the next two arguments must be a string.");
+    if (nb > -1) return nb < 2 ? str1 : str2;
 }
 
 // =================================================
@@ -116,30 +71,16 @@ function plural(nb, str1, str2) {
  **/
 
 function storage(action, name, value = null) {
-    let subTitle = _LIBRARY_TITLE + " (" + storage.name + ") : ";
-    let error = subTitle + "the local storage named `" + name + "` doesn't exist";
-
     // getItem
-    if (action == "get" && name) {
-        if(localStorage.getItem(name))
-            return localStorage.getItem(name);
-        else
-            if (_DEBUG_MODE) throw (error);
-    }
+    if (action == "get" && name)
+        if(localStorage.getItem(name)) return localStorage.getItem(name);
 
     // setItem
-    if (action == "set"&& name && value != null)  
-        return localStorage.setItem(name, value);
+    if (action == "set"&& name && value != null)  return localStorage.setItem(name, value);
 
     // removeItem
-    if (action == "rem" && name) {
-        if(localStorage.getItem(name))
-            return localStorage.removeItem(name);
-        else
-            if (_DEBUG_MODE) throw (error);
-    }
-
-    if (_DEBUG_MODE) throw (subTitle + "needs at least two arguments, or three with the set action.");
+    if (action == "rem" && name)
+        if(localStorage.getItem(name)) return localStorage.removeItem(name);
 }
 
 /**
@@ -152,48 +93,33 @@ function storage(action, name, value = null) {
  **/
 
 function cookie(action, name, value = null, days = 365) {
-    let subTitle =  _LIBRARY_TITLE + " (" + cookie.name + ") : ";
-    let error = subTitle + "the cookie named `" + name + "` doesn't exist";
-
-    // Read a cookie
-    if (action == "read") {
-        if (typeof name == "string") {
-            let cookiesList = document.cookie.split('; ');
-            for (let i = 0; i < cookiesList.length; i++) {
-                if (cookiesList[i].split("=")[0] == name) 
-                    return cookiesList[i].split("=")[1];
+    // Get a cookie
+    if (action == "get") {
+        const cookiesList = document.cookie.split('; ');
+        for (let i = 0; i < cookiesList.length; i++) {
+            if (cookiesList[i].split("=")[0] == name) {
+                let cookieChecked = cookiesList[i].split("=")[1];
+                if (cookieChecked == "true") return true;
+                else if (cookieChecked == "false") return false;
+                else return cookieChecked;
             }
-            if (_DEBUG_MODE) throw(error); 
         }
-        else
-            if (_DEBUG_MODE) throw(subTitle + "the read action needs a string as argument.")
     }
 
-    // Create a cookie
-    if (action == "create") {
-        if (typeof name == "string" && value) {
-            let date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            let expires = "Expires=" + date.toGMTString();
-            return document.cookie = name + "=" + value + "; " + expires + "; Path=/; SameSite=Strict; Secure";
-        }
-        else 
-            if (_DEBUG_MODE) throw(subTitle + "the create action needs at lest two arguments (name, value).");
+    // Set a cookie
+    if (action == "set") {
+        let date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        const expires = "Expires=" + date.toGMTString();
+        // return document.cookie = name + "=" + value + "; " + expires + "; Path=/; SameSite=Strict; Secure";
+        return document.cookie = name + "=" + value + "; " + expires;
     }
 
-    // Delete a cookie
-    if (action == "delete") {
-        if (typeof name == "string") {
-            if (cookie("read", name))
-                return document.cookie = name + "=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; Path=/; SameSite=Strict; Secure";
-            else 
-                if (_DEBUG_MODE) throw(error);
-        }
-        else 
-            if (_DEBUG_MODE) throw(subTitle + "the delete action needs a string as argument.")
+    // Remove a cookie
+    if (action == "rem") {
+        if (cookie("get", name))
+            return document.cookie = name + "=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; Path=/; SameSite=Strict; Secure";
     }
-
-    if (_DEBUG_MODE) throw (subTitle + "needs at least two arguments, or four with the create action.");
 }
 
 // =================================================
@@ -207,16 +133,8 @@ function cookie(action, name, value = null, days = 365) {
  **/
 
 function getVariableCSS(name) {
-    let subTitle =  _LIBRARY_TITLE + " (" + getVariableCSS.name + ") : ";
-
-    if (typeof name == "string") {
-        if (getComputedStyle(document.documentElement).getPropertyValue("--" + name) != "")
-            return getComputedStyle(document.documentElement).getPropertyValue("--" + name);
-        else 
-            if (_DEBUG_MODE) throw(subTitle + "the " + name + " CSS variable does't exist"); 
-    }
-    else 
-        if (_DEBUG_MODE)throw(subTitle + "needs a string as argument."); 
+    if (getComputedStyle(document.documentElement).getPropertyValue("--" + name) != "")
+         return getComputedStyle(document.documentElement).getPropertyValue("--" + name);
 }
 
 // =================================================
@@ -231,16 +149,10 @@ function getVariableCSS(name) {
  **/
 
 function download(content, name) {
-    let subTitle =  _LIBRARY_TITLE + " (" + download.name + ") : ";
+    const file = new Blob([content], { type: 'text/plain' });
+    const dl = document.createElement('a');
 
-    if (typeof content == "string" && typeof name == "string") {
-        let file = new Blob([content], { type: 'text/plain' });
-        let dl = document.createElement('a');
-    
-        dl.download = name;
-        dl.href = window.URL.createObjectURL(file);
-        dl.click();
-    }
-    else 
-        if (_DEBUG_MODE) throw (subTitle + "needs at two strings as arguments.")
+    dl.download = name;
+    dl.href = window.URL.createObjectURL(file);
+    dl.click();
 }
