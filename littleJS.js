@@ -1,9 +1,9 @@
-// => Version : 0.3.1
-// => Last update : 25/03/2021
+// => Version : 0.3.2
+// => Last update : 15/04/2021
 
 // =================================================
 // =================================================
-// ============ GENERIC
+// ============ DOM
 
 /**
  *  Easy, pratical and quick element selector
@@ -24,6 +24,10 @@ function get(element) {
     if (element.search("~") == 0 && element.split("~")[1] != null)
         if (document.querySelectorAll(element.split("~")[1])[0] != null) return document.querySelectorAll(element.split("~")[1])[0];
 }
+
+// =================================================
+// =================================================
+// ============ GENERIC
 
 /**
  *  Return a random number between x and y
@@ -60,67 +64,89 @@ function plural(nb, str1, str2) {
 
 // =================================================
 // =================================================
-// ============ STORAGE
+// ============ LOCAL STORAGE
 
 /**
- *  Get, set or remove a local storage
- * @param {string} action "get" to get a local storage, "set" to create/modify a local storage or "remove" to delete a local storage
+ *  Get a local storage
+ * @param {string} name name of the local storage
+ * @return void
+ **/
+
+function getStorage(name) {
+    if (name && localStorage.getItem(name)) return localStorage.getItem(name);
+}
+
+/**
+ *  Set a local storage
  * @param {string} name name of the local storage
  * @param {string} value value of the local storage (only for the "set" action)
  * @return void
  **/
 
-function storage(action, name, value = null) {
-    // getItem
-    if (action == "get" && name)
-        if(localStorage.getItem(name)) return localStorage.getItem(name);
-
-    // setItem
-    if (action == "set"&& name && value != null)  return localStorage.setItem(name, value);
-
-    // removeItem
-    if (action == "rem" && name)
-        if(localStorage.getItem(name)) return localStorage.removeItem(name);
+function setStorage(name, value) {
+    if (name && value != null) return localStorage.setItem(name, value);
 }
 
 /**
- *  Read, create or delete a cookie
- * @param {string} action "read" for reading a cookie, "create" to create/modify a cookie or "delete" to delete a cookie
- * @param {string} name name of the cookie
- * @param {string} value value of the cookie (only for the "create" action)
- * @param {string} days number of days of the cookie (only for the "create" action, by default : one year)
+ *  Remove a local storage
+ * @param {string} name name of the local storage
  * @return void
  **/
 
-function cookie(action, name, value = null, days = 365) {
-    // Get a cookie
-    if (action == "get") {
-        const cookiesList = document.cookie.split('; ');
-        for (let i = 0; i < cookiesList.length; i++) {
-            if (cookiesList[i].split("=")[0] == name) {
-                let cookieChecked = cookiesList[i].split("=")[1];
-                if (cookieChecked == "true") return true;
-                else if (cookieChecked == "false") return false;
-                else return cookieChecked;
-            }
+function remStorage(name) {
+    if (name && localStorage.getItem(name)) return localStorage.removeItem(name);
+}
+
+// =================================================
+// =================================================
+// ============ COOKIES
+
+/**
+ *  Read a cookie
+ * @param {string} name name of the cookie
+ * @return void
+ **/
+
+function getCookie(name) {
+    const cookiesList = document.cookie.split('; ');
+    for (let i = 0; i < cookiesList.length; i++) {
+        if (cookiesList[i].split("=")[0] == name) {
+            let cookieChecked = cookiesList[i].split("=")[1];
+            if (cookieChecked == "true") return true;
+            else if (cookieChecked == "false") return false;
+            else return cookieChecked;
         }
     }
-
-    // Set a cookie
-    if (action == "set") {
-        let date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        const expires = "Expires=" + date.toGMTString();
-        // return document.cookie = name + "=" + value + "; " + expires + "; Path=/; SameSite=Strict; Secure";
-        return document.cookie = name + "=" + value + "; " + expires;
-    }
-
-    // Remove a cookie
-    if (action == "rem") {
-        if (cookie("get", name))
-            return document.cookie = name + "=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; Path=/; SameSite=Strict; Secure";
-    }
 }
+
+/**
+ *  Set a cookie
+ * @param {string} name name of the cookie
+ * @param {string} value value of the cookie
+ * @param {string} lifetime number of days of the cookie
+ * @return void
+ **/
+
+function setCookie (name, value, lifetime = 365) {
+    let date = new Date();
+    date.setTime(date.getTime() + (lifetime * 24 * 60 * 60 * 1000));
+    const expires = "Expires=" + date.toGMTString();
+    document.cookie = name + "=" + value + "; " + expires + "; Path=/; SameSite=Strict; Secure";
+    // document.cookie = name + "=" + value + "; " + expires;
+}
+
+/**
+ *  Remove a cookie
+ * @param {string} name name of the cookie
+ * @return void
+ **/
+
+function remCookie (name) {
+    if (getCookie(name)) 
+        document.cookie = name + "=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; Path=/; SameSite=Strict; Secure";
+        // document.cookie = name + "=; Expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+}
+
 
 // =================================================
 // =================================================
@@ -134,7 +160,7 @@ function cookie(action, name, value = null, days = 365) {
 
 function getVariableCSS(name) {
     if (getComputedStyle(document.documentElement).getPropertyValue("--" + name) != "")
-         return getComputedStyle(document.documentElement).getPropertyValue("--" + name);
+        return getComputedStyle(document.documentElement).getPropertyValue("--" + name);
 }
 
 // =================================================
