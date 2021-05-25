@@ -1,6 +1,6 @@
 # littleJS
 
-> Version 0.3.2 :memo:  
+> Version 0.3.3 :memo:  
 > My own and very little library for JavaScript.
 
 ## DOM
@@ -11,6 +11,7 @@
 
 ## Generic
 - `rand` : return a random number.
+- `randomName` : return a random value (should not be used for secure things).
 - `ucFirst` : add a majuscule to a string.
 - `plural` : according to a number, display singular or plural
 
@@ -28,12 +29,14 @@
 - `getVariableCSS` : get the value of a CSS variable.
 
 ## Uncategorized
-- `download` : make blob downloadable.
+- `download` : make plain text downloadable.
+- `downloadImage`: download a picture from an URL.
  
  # Changelog
  
- - 0.3.2 :  a few changes, multiples functions for local storage and cookies.
+ - 0.3.3 : new functions with `randomName` and `downloadImage`.
+ - 0.3.2 :  a few changes, multiples functions for local storage and cookies (get, set, rem).
  - 0.3.1 : actually, I decided to remove all the debug part cos I want to keep it light. The problem of the cookie function has been corrected thank to this [kind guy](https://github.com/NamedRoger). I didn't choose his method but it seems to work well too.
  - 0.3 : documentation added for each functions, a lot more debug info
- - 0.2 : new functions as `cookie` and `getVariableCSS` 
+ - 0.2 : new functions with `cookie` and `getVariableCSS` 
  - 0.1 : Initial release

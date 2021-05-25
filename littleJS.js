@@ -1,4 +1,4 @@
-// => Version : 0.3.2
+// => Version : 0.3.3
 // => Last update : 15/04/2021
 
 // =================================================
@@ -41,13 +41,30 @@ function rand(min, max) {
 }
 
 /**
+ *  Return a random value (not used for secure things)
+ * @param {int} length     the llength of the value
+ * @return random value
+ **/
+
+function randomName(randomLength = 15) {
+    let name;
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    
+    for (let i = 0; i < randomLength; i++) {
+        (i == 0) ? name = characters.charAt(Math.floor(Math.random() * characters.length)) : name += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+
+    return name;
+} 
+
+/**
  *  Return capitalized string
  * @param {string} s string to be capitalized
  * @return capitalized string
  **/
 
 function ucFirst(s) {
-        return s.charAt(0).toUpperCase() + s.slice(1);
+    return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
 /**
@@ -165,10 +182,10 @@ function getVariableCSS(name) {
 
 // =================================================
 // =================================================
-// ============ UNCATEGORIZED
+// ============ DOWNLOAD
 
 /**
- *  Create a blob and make it downloadable
+ *  Create full plain text blob and download it
  * @param {string} content the content of the file
  * @param {string} name the name of the file
  * @return void
@@ -180,5 +197,22 @@ function download(content, name) {
 
     dl.download = name;
     dl.href = window.URL.createObjectURL(file);
+    dl.click();
+}
+
+/**
+ *  Create a picture blob and download it
+ * @param {string} source the URL of the original picture
+ * @return void
+ **/
+
+ async function downloadImage(source) {
+    const image = await fetch(source);
+    const imageBlob = await image.blob();
+    const imageURL = URL.createObjectURL(imageBlob);
+    const dl = document.createElement('a');
+    
+    dl.download = randomName();
+    dl.href = imageURL;
     dl.click();
 }
