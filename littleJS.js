@@ -1,5 +1,5 @@
 // => Version : 0.3.3
-// => Last update : 15/04/2021
+// => Last update : 29/06/2021
 
 // =================================================
 // =================================================
@@ -31,8 +31,8 @@ function get(element) {
 
 /**
  *  Return a random number between x and y
- * @param {int} min     the lowest number
- * @param {int} max    the biggest number
+ * @param {int} min the lowest number
+ * @param {int} max the biggest number
  * @return random value
  **/
 
@@ -42,7 +42,7 @@ function rand(min, max) {
 
 /**
  *  Return a random value (not used for secure things)
- * @param {int} length     the llength of the value
+ * @param {int} length the length of the value
  * @return random value
  **/
 
@@ -59,12 +59,12 @@ function randomName(randomLength = 15) {
 
 /**
  *  Return capitalized string
- * @param {string} s string to be capitalized
+ * @param {string} str string to be capitalized
  * @return capitalized string
  **/
 
-function ucFirst(s) {
-    return s.charAt(0).toUpperCase() + s.slice(1);
+function ucFirst(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 /**
@@ -101,7 +101,7 @@ function getStorage(name) {
  **/
 
 function setStorage(name, value) {
-    if (name && value != null) return localStorage.setItem(name, value);
+    if (name && value) localStorage.setItem(name, value);
 }
 
 /**
@@ -111,7 +111,7 @@ function setStorage(name, value) {
  **/
 
 function remStorage(name) {
-    if (name && localStorage.getItem(name)) return localStorage.removeItem(name);
+    if (name && localStorage.getItem(name)) localStorage.removeItem(name);
 }
 
 // =================================================
@@ -126,9 +126,11 @@ function remStorage(name) {
 
 function getCookie(name) {
     const cookiesList = document.cookie.split('; ');
+
     for (let i = 0; i < cookiesList.length; i++) {
         if (cookiesList[i].split("=")[0] == name) {
             let cookieChecked = cookiesList[i].split("=")[1];
+
             if (cookieChecked == "true") return true;
             else if (cookieChecked == "false") return false;
             else return cookieChecked;
@@ -148,7 +150,11 @@ function setCookie (name, value, lifetime = 365) {
     let date = new Date();
     date.setTime(date.getTime() + (lifetime * 24 * 60 * 60 * 1000));
     const expires = "Expires=" + date.toGMTString();
+
+    // For normal usage
     document.cookie = name + "=" + value + "; " + expires + "; Path=/; SameSite=Strict; Secure";
+
+    // For localhost usage
     // document.cookie = name + "=" + value + "; " + expires;
 }
 
@@ -160,7 +166,10 @@ function setCookie (name, value, lifetime = 365) {
 
 function remCookie (name) {
     if (getCookie(name)) 
+        // For normal usage
         document.cookie = name + "=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; Path=/; SameSite=Strict; Secure";
+
+        // For localhost usage
         // document.cookie = name + "=; Expires=Thu, 01 Jan 1970 00:00:00 UTC;";
 }
 
