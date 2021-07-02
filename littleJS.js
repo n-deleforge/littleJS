@@ -1,5 +1,5 @@
-// => Version : 0.3.3
-// => Last update : 29/06/2021
+// => Version : 0.3.4
+// => Last update : 02/07/2021
 
 // =================================================
 // =================================================
@@ -191,7 +191,7 @@ function getVariableCSS(name) {
 
 // =================================================
 // =================================================
-// ============ DOWNLOAD
+// ============ UNCATEGORIZED
 
 /**
  *  Create full plain text blob and download it
@@ -225,3 +225,17 @@ function download(content, name) {
     dl.href = imageURL;
     dl.click();
 }
+
+/**
+ *  Create an hyperlink
+ * @param {string} href the URL
+ * @param {bool} newTab
+ * @return void
+ **/
+
+ function navigate(href, newTab) {
+    const a = document.createElement('a');
+    a.href = href;
+    if (newTab) a.setAttribute('target', '_blank');
+    a.click();
+ }

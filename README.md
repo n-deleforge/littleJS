@@ -1,6 +1,6 @@
 # littleJS
 
-> Version 0.3.3 :memo:  
+> Version 0.3.4 :memo:  
 > My own and very little library for JavaScript.
 
 ## DOM
@@ -31,9 +31,11 @@
 ## Uncategorized
 - `download` : make plain text downloadable.
 - `downloadImage`: download a picture from an URL.
+- `navigate`: create a link - with a new tab if necessary
  
  # Changelog
  
+ - 0.3.4 : new function with `navigate`.
  - 0.3.3 : new functions with `randomName` and `downloadImage`.
  - 0.3.2 :  a few changes, multiples functions for local storage and cookies (get, set, rem).
  - 0.3.1 : actually, I decided to remove all the debug part cos I want to keep it light. The problem of the cookie function has been corrected thank to this [kind guy](https://github.com/NamedRoger). I didn't choose his method but it seems to work well too.
