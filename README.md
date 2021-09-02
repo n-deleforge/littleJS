@@ -1,6 +1,6 @@
 # littleJS
 
-> Version 0.3.4 :memo:  
+> Version 0.3.45:memo:  
 > My own and very little library for JavaScript.
 
 ## DOM
@@ -25,6 +25,9 @@
 - `setCookie` : set a cookie.
 - `remCookie` : remove a cookie.
 
+## Promise
+- `showAfter` : return a promise which is resolved after a timeout given
+
 ## CSS to JS
 - `getVariableCSS` : get the value of a CSS variable.
 
@@ -35,6 +38,7 @@
  
  # Changelog
  
+ - 0.3.5 : new function with `showAfter`
  - 0.3.4 : new function with `navigate`.
  - 0.3.3 : new functions with `randomName` and `downloadImage`.
  - 0.3.2 :  a few changes, multiples functions for local storage and cookies (get, set, rem).

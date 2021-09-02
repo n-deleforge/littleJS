@@ -1,7 +1,11 @@
-// => Version : 0.3.4
-// => Last update : 02/07/2021
+/*
 
-// =================================================
+    Version : 0.3.5
+    Last update : 02/09/2021
+    See changelog here : https://github.com/n-deleforge/littlejs/
+
+*/
+
 // =================================================
 // ============ DOM
 
@@ -25,7 +29,6 @@ function get(element) {
         if (document.querySelectorAll(element.split("~")[1])[0] != null) return document.querySelectorAll(element.split("~")[1])[0];
 }
 
-// =================================================
 // =================================================
 // ============ GENERIC
 
@@ -146,16 +149,12 @@ function getCookie(name) {
  * @return void
  **/
 
-function setCookie (name, value, lifetime = 365) {
+function setCookie (name, value, lifetime = 365, local = false) {
     let date = new Date();
     date.setTime(date.getTime() + (lifetime * 24 * 60 * 60 * 1000));
     const expires = "Expires=" + date.toGMTString();
 
-    // For normal usage
-    document.cookie = name + "=" + value + "; " + expires + "; Path=/; SameSite=Strict; Secure";
-
-    // For localhost usage
-    // document.cookie = name + "=" + value + "; " + expires;
+    document.cookie = (local == false) ? name + "=" + value + "; " + expires + "; Path=/; SameSite=Strict; Secure" : name + "=" + value + "; " + expires;
 }
 
 /**
@@ -164,17 +163,12 @@ function setCookie (name, value, lifetime = 365) {
  * @return void
  **/
 
-function remCookie (name) {
+function remCookie (name, local = false) {
     if (getCookie(name)) 
-        // For normal usage
-        document.cookie = name + "=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; Path=/; SameSite=Strict; Secure";
-
-        // For localhost usage
-        // document.cookie = name + "=; Expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+        document.cookie = (local == false) ?  name + "=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; Path=/; SameSite=Strict; Secure" : name + "=; Expires=Thu, 01 Jan 1970 00:00:00 UTC;";
 }
 
 
-// =================================================
 // =================================================
 // ============ CSS TO JS
 
@@ -190,6 +184,20 @@ function getVariableCSS(name) {
 }
 
 // =================================================
+// ============ PROMISE
+
+/**
+ * Create a promise and resolve it when the timeout is over
+ * @param {int} timeout number in ms
+ * @return resolve
+ **/
+
+ function showAfter(timeout) {
+    return new Promise(resolve => {
+        setTimeout(() => { resolve() }, timeout);
+    });
+};
+
 // =================================================
 // ============ UNCATEGORIZED
 
