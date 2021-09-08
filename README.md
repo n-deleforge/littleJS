@@ -26,7 +26,7 @@
 - `remCookie` : remove a cookie.
 
 ## Promise
-- `showAfter` : return a promise which is resolved after a timeout given
+- `wait` : return a promise which is resolved after a timeout given
 
 ## CSS to JS
 - `getVariableCSS` : get the value of a CSS variable.
