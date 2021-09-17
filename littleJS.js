@@ -40,7 +40,7 @@ function get(element) {
  **/
 
 function rand(min, max) {
-    if (min < max) return (Math.floor(Math.random() * (max - min) + min));
+    if (min < max) return (Math.floor(Math.random() * max) + min);
 }
 
 /**
