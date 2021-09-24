@@ -26,10 +26,12 @@ Here the current list of the different functions of littleJS.
 - `ucFirst` : add a majuscule to a string.
 - `plural` : according to a number, display singular or plural
 
-**Local Storage and cookies** :
+**Local Storage** :
 - `getStorage` : get a local storage.
 - `setStorage` : set a local storage.
 - `remStorage` : remove a local storage.
+
+**Cookies** :
 - `getCookie` : get a cookie.
 - `setCookie` : set a cookie.
 - `remCookie` : remove a cookie.
