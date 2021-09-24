@@ -1,51 +1,36 @@
 ![Header](https://raw.githubusercontent.com/n-deleforge/littleJS/main/docs/header.png)
 
 <div align="center">
-  <p>An easy and light library for Javascript.</p>
 
 [![GitHub license](https://img.shields.io/github/license/n-deleforge/littleJS?style=for-the-badge)](https://github.com/n-deleforge/littleJS/blob/main/LICENCE)
 ![GitHub last commit](https://img.shields.io/github/last-commit/n-deleforge/littleJS?style=for-the-badge)
 [![GitHub forks](https://img.shields.io/github/forks/n-deleforge/littleJS?style=for-the-badge)](https://github.com/n-deleforge/littleJS/network)
 [![GitHub stars](https://img.shields.io/github/stars/n-deleforge/littleJS?style=for-the-badge)](https://github.com/n-deleforge/littleJS/stargazers)
 ![GitHub file size in bytes](https://img.shields.io/github/size/n-deleforge/littleJS/littleJS.min.js?style=for-the-badge)
+
 </div>
+
+# Overview
+
+When I started to learn Javascript, I realised that I was often using the same functions and then I thought it would a good exercice to create a kind of simple library for my personnal use, instead of using any other popular alternatives like **jQuery**.
 
 # Features
 
-Here the current list of the different functions of littleJS.
+Some examples of functions from **littleJS**.
 
-**DOM** :
 - `get` : select an element.
-  - `#` select an ID
-  - `.` select a list of class
-  - `~` select a tag like header or footer
-
-**Generic** :
 - `rand` : return a random number.
-- `randomName` : return a random value (should not be used for secure things).
 - `ucFirst` : add a majuscule to a string.
-- `plural` : according to a number, display singular or plural
-
-**Local Storage** :
 - `getStorage` : get a local storage.
-- `setStorage` : set a local storage.
-- `remStorage` : remove a local storage.
-
-**Cookies** :
-- `getCookie` : get a cookie.
 - `setCookie` : set a cookie.
-- `remCookie` : remove a cookie.
-
-**Promise** :
 - `wait` : return a promise which is resolved after a timeout given
-
-**CSS to JS** :
 - `getVariableCSS` : get the value of a CSS variable.
-
-**Uncategorized** :
-- `download` : make plain text downloadable.
 - `downloadImage`: download a picture from an URL.
-- `navigate`: create a link - with a new tab if necessary
+
+To see all the functions, their uses and their utilities, you can read the [complete manual](https://raw.githubusercontent.com/n-deleforge/littleJS/main/docs/manual.md).
+
+# Quick start
+Download the file `littleJS.min.js`, add it to your project and include it in your page like any Javascript files.
 
 # Changelog
  

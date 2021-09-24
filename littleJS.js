@@ -49,7 +49,7 @@ function rand(min, max) {
  * @return random value
  **/
 
-function randomName(randomLength = 15) {
+function randomValue(randomLength = 15) {
     let name;
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     
