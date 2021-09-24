@@ -1,4 +1,4 @@
-![Header](https://github.com/n-deleforge/littleJS/docs/header.png)
+![Header](https://raw.githubusercontent.com/n-deleforge/littleJS/main/docs/header.pngg)
 
 <div align="center">
 An easy and light library for Javascript.
