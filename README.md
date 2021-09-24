@@ -1,7 +1,7 @@
-![Header](https://raw.githubusercontent.com/n-deleforge/littleJS/main/docs/header.pngg)
+![Header](https://raw.githubusercontent.com/n-deleforge/littleJS/main/docs/header.png)
 
 <div align="center">
-An easy and light library for Javascript.
+  <p>An easy and light library for Javascript.</p>
 
 [![GitHub license](https://img.shields.io/github/license/n-deleforge/littleJS?style=for-the-badge)](https://github.com/n-deleforge/littleJS/blob/main/LICENCE)
 ![GitHub last commit](https://img.shields.io/github/last-commit/n-deleforge/littleJS?style=for-the-badge)
@@ -26,10 +26,12 @@ Here the current list of the different functions of littleJS.
 - `ucFirst` : add a majuscule to a string.
 - `plural` : according to a number, display singular or plural
 
-**Local Storage and cookies** :
+**Local Storage** :
 - `getStorage` : get a local storage.
 - `setStorage` : set a local storage.
 - `remStorage` : remove a local storage.
+
+**Cookies** :
 - `getCookie` : get a cookie.
 - `setCookie` : set a cookie.
 - `remCookie` : remove a cookie.
