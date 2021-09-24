@@ -1,7 +1,7 @@
 ![Header](https://raw.githubusercontent.com/n-deleforge/littleJS/main/docs/header.png)
 
 <div align="center">
-An easy and light library for Javascript.
+  <p>An easy and light library for Javascript.</p>
 
 [![GitHub license](https://img.shields.io/github/license/n-deleforge/littleJS?style=for-the-badge)](https://github.com/n-deleforge/littleJS/blob/main/LICENCE)
 ![GitHub last commit](https://img.shields.io/github/last-commit/n-deleforge/littleJS?style=for-the-badge)
