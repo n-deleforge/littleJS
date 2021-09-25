@@ -1,7 +1,7 @@
 /*
 
     Version : 0.3.5
-    Last update : 02/09/2021
+    Last update : 25/09//2021
     See changelog here : https://github.com/n-deleforge/littlejs/
 
 */
@@ -11,7 +11,7 @@
 
 /**
  *  Easy, pratical and quick element selector
- * @param {string} element  key character ("#"  for an ID element, "."   for a list of class or "~" for tag) + name of the element to select
+ * @param {string} element
  * @return HTMLelement (querySelector)
  **/
 
@@ -33,10 +33,10 @@ function get(element) {
 // ============ GENERIC
 
 /**
- *  Return a random number between x and y
- * @param {int} min the lowest number
- * @param {int} max the biggest number
- * @return random value
+ *  Return a random number between min and max
+ * @param {int} min
+ * @param {int} max
+ * @return string
  **/
 
 function rand(min, max) {
@@ -45,8 +45,8 @@ function rand(min, max) {
 
 /**
  *  Return a random value (not used for secure things)
- * @param {int} length the length of the value
- * @return random value
+ * @param {int} length
+ * @return string
  **/
 
 function randomValue(randomLength = 15) {
@@ -62,8 +62,8 @@ function randomValue(randomLength = 15) {
 
 /**
  *  Return capitalized string
- * @param {string} str string to be capitalized
- * @return capitalized string
+ * @param {string} str
+ * @return string
  **/
 
 function ucFirst(str) {
@@ -72,14 +72,14 @@ function ucFirst(str) {
 
 /**
  *  Return singular or plural according the quantity given
- * @param {int} nb the quantity
- * @param {string} str1 the singular
- * @param {string} str2 the plural
- * @return singular or plural
+ * @param {int} quantity
+ * @param {string} singular
+ * @param {string} plural
+ * @return string
  **/
 
-function plural(nb, str1, str2) {
-    if (nb > -1) return nb < 2 ? str1 : str2;
+function plural(quantity, singular, plural) {
+    if (quantity > -1) return quantity < 2 ? singular : plural;
 }
 
 // =================================================
@@ -88,7 +88,7 @@ function plural(nb, str1, str2) {
 
 /**
  *  Get a local storage
- * @param {string} name name of the local storage
+ * @param {string} name
  * @return void
  **/
 
@@ -98,8 +98,8 @@ function getStorage(name) {
 
 /**
  *  Set a local storage
- * @param {string} name name of the local storage
- * @param {string} value value of the local storage (only for the "set" action)
+ * @param {string} name
+ * @param {string} value
  * @return void
  **/
 
@@ -109,7 +109,7 @@ function setStorage(name, value) {
 
 /**
  *  Remove a local storage
- * @param {string} name name of the local storage
+ * @param {string} name
  * @return void
  **/
 
@@ -123,7 +123,7 @@ function remStorage(name) {
 
 /**
  *  Read a cookie
- * @param {string} name name of the cookie
+ * @param {string} name
  * @return void
  **/
 
@@ -143,9 +143,10 @@ function getCookie(name) {
 
 /**
  *  Set a cookie
- * @param {string} name name of the cookie
- * @param {string} value value of the cookie
- * @param {string} lifetime number of days of the cookie
+ * @param {string} name
+ * @param {string} value
+ * @param {int} lifetime
+ * @param {bool} local
  * @return void
  **/
 
@@ -159,7 +160,8 @@ function setCookie (name, value, lifetime = 365, local = false) {
 
 /**
  *  Remove a cookie
- * @param {string} name name of the cookie
+ * @param {string} name
+ * @param {bool} local
  * @return void
  **/
 
@@ -174,8 +176,8 @@ function remCookie (name, local = false) {
 
 /**
  *  Return the value of the CSS variable given
- * @param {string} name the name of the CSS variable
- * @return the value of the CSS variable
+ * @param {string} name
+ * @return string
  **/
 
 function getVariableCSS(name) {
@@ -188,7 +190,7 @@ function getVariableCSS(name) {
 
 /**
  * Create a promise and resolve it when the timeout is over
- * @param {int} timeout number in ms
+ * @param {int} timeout
  * @return resolve
  **/
 
@@ -202,9 +204,9 @@ function getVariableCSS(name) {
 // ============ UNCATEGORIZED
 
 /**
- *  Create full plain text blob and download it
- * @param {string} content the content of the file
- * @param {string} name the name of the file
+ *  Create full plain text blob and make it downloadable
+ * @param {string} content
+ * @param {string} name
  * @return void
  **/
 
@@ -218,13 +220,13 @@ function download(content, name) {
 }
 
 /**
- *  Create a picture blob and download it
- * @param {string} source the URL of the original picture
+ *  Create a picture blob and make it downloadable
+ * @param {string} url
  * @return void
  **/
 
- async function downloadImage(source) {
-    const image = await fetch(source);
+ async function downloadImage(url) {
+    const image = await fetch(url);
     const imageBlob = await image.blob();
     const imageURL = URL.createObjectURL(imageBlob);
     const dl = document.createElement('a');
@@ -235,15 +237,15 @@ function download(content, name) {
 }
 
 /**
- *  Create an hyperlink
- * @param {string} href the URL
+ *  Create an hyperlink and redirect the user
+ * @param {string} url
  * @param {bool} newTab
  * @return void
  **/
 
- function navigate(href, newTab) {
+ function navigate(url, newTab = true) {
     const a = document.createElement('a');
-    a.href = href;
+    a.href = url;
     if (newTab) a.setAttribute('target', '_blank');
     a.click();
  }
