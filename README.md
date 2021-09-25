@@ -10,11 +10,7 @@
 [![Paypal](https://img.shields.io/badge/DONATE-PAYPAL.ME-lightgrey?style=for-the-badge)](https://www.paypal.com/paypalme/nicolasdeleforge)
 
 </div>
-
-# Overview
-
-When I started to learn Javascript, I realised that I was often using the same functions and then I thought it would a good exercice to create a kind of simple library for my personnal use, instead of using any other popular alternatives like **jQuery**.
-
+ 
 # Features
 
 Some examples of functions from **littleJS**.
