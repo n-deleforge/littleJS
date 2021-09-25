@@ -1,4 +1,4 @@
-![Header](https://raw.githubusercontent.com/n-deleforge/littleJS/main/docs/header.png)
+![Header](/docs/header.png)
 
 <div align="center">
 
@@ -28,7 +28,7 @@ Some examples of functions from **littleJS**.
 - `getVariableCSS` : get the value of a CSS variable.
 - `downloadImage`: download a picture from an URL.
 
-To see all the functions, their uses and their utilities, you can read the [complete manual](https://raw.githubusercontent.com/n-deleforge/littleJS/main/docs/manual.md).
+To see all the functions, their uses and their utilities, you can read the [complete manual](/docs/manual.md).
 
 # Quick start
 Download the file `littleJS.min.js`, add it to your project and include it in your page like any Javascript files.
