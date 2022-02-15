@@ -45,7 +45,7 @@ Examples :
 This function adds a majuscule to a string. It needs the string as argument.
 
 Example : 
-- `ucFirst("first name)` : return `First name`.
+- `ucFirst("first name")` : return `First name`.
 
 ### plural
 This function allows to write a word in its singular or plural form according to a number given. It needs three argument : the number, the singular form and the plural form.

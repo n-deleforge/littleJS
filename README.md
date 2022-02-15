@@ -21,7 +21,7 @@ Some examples of functions from **littleJS**.
 - `setCookie` : set a cookie.
 - `wait` : return a promise which is resolved after a timeout given
 - `getVariableCSS` : get the value of a CSS variable.
-- `downloadImage`: download a picture from an URL.
+- `downloadImage` : download a picture from an URL.
 
 To see all the functions, their uses and their utilities, you can read the [complete manual](/docs/manual.md).
 
