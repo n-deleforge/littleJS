@@ -1,9 +1,9 @@
 /*
 
     Version : 0.3.5
-    Last update : 25/09//2021
+    Last update : 15/02/2022
     See changelog here : https://github.com/n-deleforge/littlejs/
-
+    
 */
 
 // =================================================
@@ -225,13 +225,13 @@ function download(content, name) {
  * @return void
  **/
 
- async function downloadImage(url) {
+async function downloadImage(url) {
     const image = await fetch(url);
     const imageBlob = await image.blob();
     const imageURL = URL.createObjectURL(imageBlob);
     const dl = document.createElement('a');
     
-    dl.download = randomName();
+    dl.download = randomValue();
     dl.href = imageURL;
     dl.click();
 }
