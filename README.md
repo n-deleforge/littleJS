@@ -22,6 +22,7 @@ Some examples of functions from **littleJS**.
 - `wait` : return a promise which is resolved after a timeout given
 - `getVariableCSS` : get the value of a CSS variable.
 - `downloadImage` : download a picture from an URL.
+- `dump` : dump your data directly on the top of the page.
 
 To see all the functions, their uses and their utilities, you can read the [complete manual](/docs/manual.md).
 
@@ -30,8 +31,9 @@ Download the file `littleJS.min.js`, add it to your project and include it in yo
 
 # Changelog
  
- - 0.3.5 : new function with `wait`.
- - 0.3.4 : new function with `navigate`.
+ - 0.3.6 : new function `dump` which is used for debugging. Much rewriting too. Update of the manual.
+ - 0.3.5 : new function `wait` which is timer using a promise.
+ - 0.3.4 : new function `navigate` which a way to redirect an user to another URL.
  - 0.3.3 : new functions with `randomName` and `downloadImage`.
  - 0.3.2 :  a few changes, multiples functions for local storage and cookies (get, set, rem).
  - 0.3.1 : actually, I decided to remove all the debug part cos I want to keep it light. The problem of the cookie function has been corrected thank to [NamedRoger](https://github.com/NamedRoger). I didn't choose his method but it seems to work well too.

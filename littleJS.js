@@ -1,7 +1,7 @@
 /*
 
-    Version : 0.3.5
-    Last update : 15/02/2022
+    Version : 0.3.6
+    Last update : 21/03/2022
     See changelog here : https://github.com/n-deleforge/littlejs/
     
 */
@@ -17,16 +17,25 @@
 
 function get(element) {
     // ID element
-    if (element.search("#") == 0 && element.split("#")[1] != null)
-        if (document.querySelector(element) != null) return document.querySelector(element);
+    if (element.search("#") == 0 && element.split("#")[1] != null) {
+        if (document.querySelector(element) != null) {
+            return document.querySelector(element);
+        }
+    }
     
     // Class element
-    if (element.search(".") == 0 && element.split(".")[1] != null)
-        if (document.querySelectorAll(element).length != 0) return document.querySelectorAll(element);
+    if (element.search(".") == 0 && element.split(".")[1] != null) {
+        if (document.querySelectorAll(element).length != 0) {
+            return document.querySelectorAll(element);
+        }
+    }
 
     // Tag element
-    if (element.search("~") == 0 && element.split("~")[1] != null)
-        if (document.querySelectorAll(element.split("~")[1])[0] != null) return document.querySelectorAll(element.split("~")[1])[0];
+    if (element.search("~") == 0 && element.split("~")[1] != null) {
+        if (document.querySelectorAll(element.split("~")[1])[0] != null) { 
+            return document.querySelectorAll(element.split("~")[1])[0];
+        }
+    }
 }
 
 // =================================================
@@ -34,52 +43,66 @@ function get(element) {
 
 /**
  *  Return a random number between min and max
- * @param {int} min
- * @param {int} max
- * @return string
+ * @param {int} min    minimal number
+ * @param {int} max   maximal number
+ * @return integer
  **/
 
 function rand(min, max) {
-    if (min < max) return (Math.floor(Math.random() * max) + min);
+    if (min < max) {
+        return (Math.floor(Math.random() * max) + min);
+    }
 }
 
 /**
  *  Return a random value (not used for secure things)
- * @param {int} length
+ * @param {int} length length of the random value - by default : 15
  * @return string
  **/
 
 function randomValue(randomLength = 15) {
-    let name;
+    let random;
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     
-    for (let i = 0; i < randomLength; i++) {
-        (i == 0) ? name = characters.charAt(Math.floor(Math.random() * characters.length)) : name += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
+    for (let index = 0; index < randomLength; index++) {
+        if (index === 0) {
+            random = characters.charAt(Math.floor(Math.random() * characters.length))
+        }
+        else {
+            random += characters.charAt(Math.floor(Math.random() * characters.length))
+        }
+    };
 
-    return name;
+    return random;
 } 
 
 /**
  *  Return capitalized string
- * @param {string} str
- * @return string
+ * @param {string} string   string to be capitalized
+ * @return capitalized string
  **/
 
-function ucFirst(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+function ucFirst(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 /**
  *  Return singular or plural according the quantity given
- * @param {int} quantity
- * @param {string} singular
- * @param {string} plural
- * @return string
+ * @param {int} quantity        quantity of an item or anything
+ * @param {string} singular   value of the singular
+ * @param {string} plural       value of the plural
+ * @return singular or plural
  **/
 
 function plural(quantity, singular, plural) {
-    if (quantity > -1) return quantity < 2 ? singular : plural;
+    if (quantity > -1) {
+        if (quantity < 2) {
+            return singular;
+        }
+        else {
+            return plural;
+        }
+    }
 }
 
 // =================================================
@@ -88,33 +111,37 @@ function plural(quantity, singular, plural) {
 
 /**
  *  Get a local storage
- * @param {string} name
- * @return void
+ * @param {string} name name of the local storage
+ * @return value of the local storage
  **/
 
 function getStorage(name) {
-    if (name && localStorage.getItem(name)) return localStorage.getItem(name);
+    if (name && localStorage.getItem(name)) {
+        return localStorage.getItem(name);
+    }
 }
 
 /**
  *  Set a local storage
- * @param {string} name
- * @param {string} value
- * @return void
+ * @param {string} name name of the local storage
+ * @param {string} value value of the local storage
  **/
 
 function setStorage(name, value) {
-    if (name && value) localStorage.setItem(name, value);
+    if (name && value) {
+        localStorage.setItem(name, value);
+    }
 }
 
 /**
  *  Remove a local storage
- * @param {string} name
- * @return void
+ * @param {string} name name of the local storage
  **/
 
 function remStorage(name) {
-    if (name && localStorage.getItem(name)) localStorage.removeItem(name);
+    if (name && localStorage.getItem(name)) {
+        localStorage.removeItem(name);
+    }
 }
 
 // =================================================
@@ -123,66 +150,91 @@ function remStorage(name) {
 
 /**
  *  Read a cookie
- * @param {string} name
- * @return void
+ * @param {string} name name of the cookie
+ * @return the value of the cookie
  **/
 
 function getCookie(name) {
+    let cookieValue;
     const cookiesList = document.cookie.split('; ');
 
-    for (let i = 0; i < cookiesList.length; i++) {
-        if (cookiesList[i].split("=")[0] == name) {
-            let cookieChecked = cookiesList[i].split("=")[1];
+    cookiesList.forEach(cookie => {
+        if (cookie.split("=")[0] == name) {
+            const value = cookie.split("=")[1];
 
-            if (cookieChecked == "true") return true;
-            else if (cookieChecked == "false") return false;
-            else return cookieChecked;
+            if (value == "true") {
+                cookieValue = true;
+            }
+            else if (value == "false") {
+                cookieValue = false;
+            }
+            else {
+                cookieValue = value;
+            }
         }
-    }
+    });
+
+    return cookieValue;
 }
 
 /**
  *  Set a cookie
- * @param {string} name
- * @param {string} value
- * @param {int} lifetime
- * @param {bool} local
+ * @param {string} name    name of the cookie
+ * @param {string} value    value of the cookie
+ * @param {int} lifetime      lifetime of the cookie (in days) - by default : 365
+ * @param {bool} local       true for localhost - by default : false
  * @return void
  **/
 
 function setCookie (name, value, lifetime = 365, local = false) {
+    // Define datetime
     let date = new Date();
     date.setTime(date.getTime() + (lifetime * 24 * 60 * 60 * 1000));
+
+    // Define expires
     const expires = "Expires=" + date.toGMTString();
 
-    document.cookie = (local == false) ? name + "=" + value + "; " + expires + "; Path=/; SameSite=Strict; Secure" : name + "=" + value + "; " + expires;
+    // Create cookie
+    if (local) {
+        document.cookie = name + "=" + value + "; " + expires;
+    }
+    else {
+        document.cookie = name + "=" + value + "; " + expires + "; Path=/; SameSite=Strict; Secure"
+    }
 }
 
 /**
  *  Remove a cookie
- * @param {string} name
- * @param {bool} local
- * @return void
+ * @param {string} name name of the cookie
+ * @param {bool} local     true for localhost - by default : false
  **/
 
 function remCookie (name, local = false) {
-    if (getCookie(name)) 
-        document.cookie = (local == false) ?  name + "=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; Path=/; SameSite=Strict; Secure" : name + "=; Expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+    if (getCookie(name)) {
+        if (local) {
+            document.cookie = name + "=; Expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+        }
+        else {
+            document.cookie = name + "=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; Path=/; SameSite=Strict; Secure"
+        }
+    }
 }
-
 
 // =================================================
 // ============ CSS TO JS
 
 /**
  *  Return the value of the CSS variable given
- * @param {string} name
- * @return string
+ * @param {string} name name of the CSS variable
+ * @return value of the CSS variable
  **/
 
 function getVariableCSS(name) {
-    if (getComputedStyle(document.documentElement).getPropertyValue("--" + name) != "")
-        return getComputedStyle(document.documentElement).getPropertyValue("--" + name);
+    const variableCSS = getComputedStyle(document.documentElement).getPropertyValue("--" + name);
+
+    if (variableCSS !== "") {
+        return variableCSS;
+    }
 }
 
 // =================================================
@@ -190,13 +242,18 @@ function getVariableCSS(name) {
 
 /**
  * Create a promise and resolve it when the timeout is over
- * @param {int} timeout
+ * @param {int} timeout number of seconds
  * @return resolve
  **/
 
- function wait(timeout) {
+function wait(timeout) {
+     // Return a promise
     return new Promise(resolve => {
-        setTimeout(() => { resolve() }, timeout);
+
+        // Resolve the promise after the timeout
+        setTimeout(() => { 
+            resolve() 
+        }, timeout);
     });
 };
 
@@ -205,47 +262,135 @@ function getVariableCSS(name) {
 
 /**
  *  Create full plain text blob and make it downloadable
- * @param {string} content
- * @param {string} name
- * @return void
+ * @param {string} content  content of the file
+ * @param {string} name     name of the file
  **/
 
 function download(content, name) {
+    // Create a text plain file and an hyperlink element
     const file = new Blob([content], { type: 'text/plain' });
-    const dl = document.createElement('a');
+    const download = document.createElement('a');
 
-    dl.download = name;
-    dl.href = window.URL.createObjectURL(file);
-    dl.click();
+    // Setup name and make the user download the text plain file
+    download.download = name;
+    download.href = window.URL.createObjectURL(file);
+    download.click();
 }
 
 /**
  *  Create a picture blob and make it downloadable
- * @param {string} url
- * @return void
+ * @param {string} url url of the image to fetch
  **/
 
 async function downloadImage(url) {
+    // Fetch the image and create an hyperlink element
     const image = await fetch(url);
     const imageBlob = await image.blob();
     const imageURL = URL.createObjectURL(imageBlob);
-    const dl = document.createElement('a');
+    const download = document.createElement('a');
     
-    dl.download = randomValue();
-    dl.href = imageURL;
-    dl.click();
+    // Setup name, URL and make the user download the image
+    download.download = randomValue();
+    download.href = imageURL;
+    download.click();
 }
 
 /**
  *  Create an hyperlink and redirect the user
- * @param {string} url
- * @param {bool} newTab
- * @return void
+ * @param {string} url          url for the redirection
+ * @param {bool} newTab    false to redirect to the current tab - by default : true
  **/
 
  function navigate(url, newTab = true) {
+     // Create an hyperlink element
     const a = document.createElement('a');
     a.href = url;
-    if (newTab) a.setAttribute('target', '_blank');
+
+    // Set the new tab attribute
+    if (newTab) {
+        a.setAttribute('target', '_blank');
+    }
+
+    // Redirection
     a.click();
  }
+
+ // =================================================
+// ============ DEBUGGING
+
+ /**
+ *  Dump your data directly on the top of the page
+ * @param {string} data     what you need to display
+ * @param {string} theme  dark or light - by default : dark
+ **/
+
+function dump(data, theme = "dark") {
+    // Create the style
+    const dumpStyle = document.createElement('style');
+    dumpStyle.innerHTML = `
+    .dump {
+        font-family: Monospace !important;
+        font-size: 1em;
+        padding: 1vh 2vw;
+    }
+    .dumpHead {
+        font-weight: bolder;
+        color: lightcoral;
+        font-size: 1.5em;
+        margin-bottom: 0.5vw;
+        text-transform: capitalize;
+    }
+    .dumpLight {
+        background-color: lightgrey;
+        color: black;
+    }
+    .dumpDark {
+        background-color : black;
+        color: white;
+    }`;
+
+    // Create the element and add the style
+    const element = document.createElement("div");
+    const style = (theme == "dark") ? "dumpDark" : "dumpLight"; 
+    element.classList.add("dump");
+    element.classList.add(style);
+
+    // Determine the data
+    let type = typeof data;
+    switch (type) {
+        case "undefined" :
+        case "null" :
+            element.innerHTML =  "<span class='dumpHead'>Error</span><br />This function cannot display undefined or null data.";
+            break;
+        
+        case  "object" :
+            // Array
+            if (Array.isArray(data)) {
+                element.innerHTML = "<span class='dumpHead'>Array</span><br />";
+                data.forEach(line => {
+                    element.innerHTML += line + "<br />";
+                });
+            }
+            // Object
+            else {
+                element.innerHTML = "<span class='dumpHead'>Object</span><br />";
+                Object.keys(data).forEach(key => {
+                    if (typeof data[key] === "object" && data[key] !== null) {
+                        element.innerHTML = "<span class='dumpHead'>Error</span><br />This function cannot display object of multiples objects."
+                    }
+                    else {
+                        element.innerHTML += key + " : " + data[key] + "<br />";
+                    }
+                })
+            }
+            break;
+        
+        // String, bool, int etc.
+        default:
+            element.innerHTML = "<span class='dumpHead'>" + type + "</span><br />" + data;
+    }
+    
+    // Add the dump style and then the dump element
+    get("~header").appendChild(dumpStyle);
+    document.body.insertBefore(element, get("~body").childNodes[0]);
+}

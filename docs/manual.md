@@ -10,6 +10,8 @@
 - [Promise](##promise)
 - [CSS to JS](##css-to-js)
 - [Uncategorized](##uncategorized)
+- [Debugging](##debugging)
+
 
 ## DOM functions
 
@@ -132,6 +134,15 @@ Example :
 ### navigate
 This function creates an hyperlink and redirect the user. It needs the URL as argument. By default, it creates a new tab but it can be turned off.
 
-Exmaple :
-- `navgiate("https://mywebsite.com")` : redirect the user to `https://mywebsite.com` into a new tab.
-- `navgiate("htts://myotherwebsite.com", false)` : redirect the user to `htts://myotherwebsite.com` into the current tab.
+Example :
+- `navigate("https://mywebsite.com")` : redirect the user to `https://mywebsite.com` into a new tab.
+- `navigate("htts://myotherwebsite.com", false)` : redirect the user to `htts://myotherwebsite.com` into the current tab.
+
+## Debugging
+
+### dump
+This function create a new element on the top of the webpage where it's called and dump the data you're given to it. It can be styled with dark or light theme.
+
+Example :
+- `dump()` : display the dump element with an error.
+- `dump(myVariable) : display the dump element with the content of `myVariable`.
