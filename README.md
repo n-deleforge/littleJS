@@ -12,8 +12,7 @@
  
 # Features
 
-Some examples of functions from **littleJS**.
-
+Some examples of functions from **littleJS** :
 - `get` : select an element.
 - `rand` : return a random number.
 - `ucFirst` : add a majuscule to a string.
@@ -31,12 +30,12 @@ Download the file `littleJS.min.js`, add it to your project and include it in yo
 
 # Changelog
  
- - 0.3.6 : new function `dump` which is used for debugging. Much rewriting too. Update of the manual.
- - 0.3.5 : new function `wait` which is timer using a promise.
- - 0.3.4 : new function `navigate` which a way to redirect an user to another URL.
- - 0.3.3 : new functions with `randomName` and `downloadImage`.
- - 0.3.2 :  a few changes, multiples functions for local storage and cookies (get, set, rem).
- - 0.3.1 : actually, I decided to remove all the debug part cos I want to keep it light. The problem of the cookie function has been corrected thank to [NamedRoger](https://github.com/NamedRoger). I didn't choose his method but it seems to work well too.
- - 0.3 : documentation added for each functions, a lot more debug info.
- - 0.2 : new functions with `cookie` and `getVariableCSS`.
+ - 0.3.6 : New function `dump` which is used for debugging. Much rewriting too. Update of the manual.
+ - 0.3.5 : New function `wait` which is timer using a promise.
+ - 0.3.4 : New function `navigate` which a way to redirect an user to another URL.
+ - 0.3.3 : New functions with `randomName` and `downloadImage`.
+ - 0.3.2 : A few changes, multiples functions for local storage and cookies (get, set, rem).
+ - 0.3.1 : I decided to remove all the debug part to keep it light. Also, the problem of the cookie function has been corrected thank to [NamedRoger](https://github.com/NamedRoger).
+ - 0.3 : Documentation added for each functions, a lot more debug info.
+ - 0.2 : New functions with `cookie` and `getVariableCSS`.
  - 0.1 : Initial release.
