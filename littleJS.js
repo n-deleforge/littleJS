@@ -391,6 +391,6 @@ function dump(data, theme = "dark") {
     }
     
     // Add the dump style and then the dump element
-    get("~header").appendChild(dumpStyle);
+    get("~head").appendChild(dumpStyle);
     document.body.insertBefore(element, get("~body").childNodes[0]);
 }
